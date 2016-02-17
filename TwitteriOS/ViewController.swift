@@ -34,7 +34,7 @@ class ViewController: UIViewController {
             
             
             }) { (error: NSError!) -> Void in
-                print("Fail")
+                print("Failure - Request Token")
         }
     }
 

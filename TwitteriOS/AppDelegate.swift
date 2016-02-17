@@ -52,11 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
                 //print("user: \(response)")
                 
-                let userDictionary = response as! NSDictionary
+                let userDictionary = response as! [NSDictionary]
                 
-                let user = User(dictionary: userDictionary)
-                print("\(user.screenname)")
-                print("\(user.name)")
+                let tweets = Tweet.tweetsWithArray(userDictionary)
+                print("\(tweets[0].text)")
+                //print("\(user.name)")
 
                 
                 
