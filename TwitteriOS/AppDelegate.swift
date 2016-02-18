@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
             
-            TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
                 //print("user: \(response)")
                 
                 let userDictionary = response as! [NSDictionary]
