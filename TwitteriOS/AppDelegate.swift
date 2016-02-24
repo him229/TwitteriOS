@@ -44,25 +44,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         
-        TwitterClient.sharedInstance.fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
+        let client = TwitterClient.sharedInstance
+        client.fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
             print("Pass - access token")
             
-            TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
-            
-            TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
-                //print("user: \(response)")
-                
-                let userDictionary = response as! [NSDictionary]
-                
-                let tweets = Tweet.tweetsWithArray(userDictionary)
-                print("\(tweets[0].text)")
-                //print("\(user.name)")
-
-                
-                
-                
-                }, failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
-                    print ("Error")
+            client.requestSerializer.saveAccessToken(accessToken)
+            client.homeTimeLine({ (tweets: [Tweet]) -> () in
+                for tweet in tweets{
+                    print (tweet.text)}
+                }, failure: { (error: NSError) -> () in
+                    print (error.localizedDescription)
             })
             
             }) { (error: NSError!) -> Void in
