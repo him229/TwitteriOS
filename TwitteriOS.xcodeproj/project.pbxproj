@@ -85,7 +85,6 @@
 				A3D65EAC1C71A676000F7A6E /* Assets.xcassets */,
 				A3D65EAE1C71A676000F7A6E /* LaunchScreen.storyboard */,
 				A3D65EB11C71A676000F7A6E /* Info.plist */,
-				A37CA06C1C811B4F002BB472 /* LoginViewController.swift */,
 			);
 			path = TwitteriOS;
 			sourceTree = "<group>";
@@ -94,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				A3D65EB81C71A9D2000F7A6E /* TwitterClient.swift */,
+				A37CA06C1C811B4F002BB472 /* LoginViewController.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";

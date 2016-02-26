@@ -14,7 +14,47 @@ var twitterConsumerKey = "E01Iglk5lwiLnE3rFO03eCh9g"
 var twitterConsumerSecret = "ojzNJaK7C1GBP6giCvhMdh7cRcMJrtYwVRoyesEM2acNE3FdeU"
 var twitterBaseURL = NSURL (string: "https://api.twitter.com")
 
+var loginSuccess: (() -> ())?
+var loginFailure: ((NSError) -> ())?
+
 class TwitterClient: BDBOAuth1SessionManager {
+    
+    func login(success: () -> (), failure: (NSError) -> ()){
+        
+        loginSuccess = success
+        loginFailure = failure
+        
+        TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
+        TwitterClient.sharedInstance.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL(string: "cptwitterdemohimank://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
+            print("Success in getting token")
+            
+            var authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")
+            UIApplication.sharedApplication().openURL(authURL!)
+            
+            
+            
+            }) { (error: NSError!) -> Void in
+                print("Failure - Request Token")
+                loginFailure?(error)
+        }
+
+        
+    }
+    
+    func handleOpenUrl(url: NSURL){
+        fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
+//            print("Pass - access token")
+            
+            loginSuccess?()
+            
+//            requestSerializer.saveAccessToken(accessToken)
+            
+            }) { (error: NSError!) -> Void in
+                print("error: \(error.localizedDescription)")
+                loginFailure?(error)
+        }
+        
+    }
 
     class var sharedInstance: TwitterClient {
         struct Static {
