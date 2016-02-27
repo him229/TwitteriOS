@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
             
             }) { (error: NSError!) -> Void in
-                print("Fail - accesstoken")
+                print("error: \(error.localizedDescription)")
         }
         
         return true

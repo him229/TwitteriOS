@@ -1,0 +1,50 @@
+//
+//  LoginViewController.swift
+//  TwitteriOS
+//
+//  Created by Himank Yadav on 2/26/16.
+//  Copyright © 2016 himankyadav. All rights reserved.
+//
+
+import UIKit
+import BDBOAuth1Manager
+
+class LoginViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    @IBAction func onLoginButton(sender: AnyObject) {
+        TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
+        TwitterClient.sharedInstance.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL(string: "cptwitterdemohimank://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
+            print("Success in getting token")
+            
+            var authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")
+            UIApplication.sharedApplication().openURL(authURL!)
+            
+            
+            
+            }) { (error: NSError!) -> Void in
+                print("Failure - Request Token")
+        }
+    }
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
