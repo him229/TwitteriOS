@@ -21,10 +21,6 @@ class TweetsViewController: UIViewController {
             let tweets = Tweet.tweetsWithArray(userDictionary)
             print("\(tweets[0].text)")
             //print("\(user.name)")
-            
-            
-            
-            
             }, failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
                 print ("Error")
         })

@@ -43,9 +43,15 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func handleOpenUrl(url: NSURL){
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
+            
+            self.currentAccount({ (user: User) -> () in
+                User.currentUser = user
+                loginSuccess?()
+                }, failure: { (error: NSError) -> () in
+                    loginFailure?(error)
+            })
 //            print("Pass - access token")
             
-            loginSuccess?()
             
 //            requestSerializer.saveAccessToken(accessToken)
             
@@ -54,6 +60,20 @@ class TwitterClient: BDBOAuth1SessionManager {
                 loginFailure?(error)
         }
         
+    }
+    
+    func currentAccount(success: (User) -> (), failure: (NSError) -> ()){
+        TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task:NSURLSessionDataTask, response:AnyObject?) -> Void in
+            
+            let userDictionary = response as! NSDictionary
+            
+            let user = User(dictionary: userDictionary)
+            
+            success(user)
+            
+            }) { (task:NSURLSessionDataTask?, error:NSError) -> Void in
+                print("error: \(error.localizedDescription)")
+        }
     }
 
     class var sharedInstance: TwitterClient {
