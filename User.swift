@@ -55,7 +55,8 @@ class User: NSObject {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 if let user = user {
                     let data = try! NSJSONSerialization.dataWithJSONObject(user.dictionary!, options: [])
-                    defaults.setObject(user.dictionary, forKey: "currentUserData")
+                    defaults.setObject(data, forKey: "currentUserData")
+                    print("Reached her - saved data")
                 } else{
                     defaults.setObject(nil, forKey: "currentUserData")
                 }
