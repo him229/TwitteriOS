@@ -54,7 +54,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCellTableViewCell
-        print("FUCKING TWEETS \(tweets[indexPath.row].text)")
         cell.tweetContent.text = tweets[indexPath.row].text as! String
         return cell
     }
