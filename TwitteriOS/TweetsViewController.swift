@@ -8,10 +8,15 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        tableView.dataSource = self
+        tableView.delegate = self
         
         TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             //print("user: \(response)")
@@ -19,8 +24,10 @@ class TweetsViewController: UIViewController {
             let userDictionary = response as! [NSDictionary]
             
             let tweets = Tweet.tweetsWithArray(userDictionary)
-            print("\(tweets[0].text)")
-            //print("\(user.name)")
+            print("\(tweets[10].text)")
+            
+            self.tableView.reloadData()
+
             }, failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
                 print ("Error")
         })
@@ -29,6 +36,27 @@ class TweetsViewController: UIViewController {
     }
     @IBAction func onLogoutButton(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if (tweets != nil)
+        {
+            return tweets!.count
+        }
+        else {return 0}
+    }
+    
+    
+    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCellTableViewCell
+        print("FUCKING TWEETS \(tweets[indexPath.row].text)")
+        cell.tweetContent.text = tweets[indexPath.row].text as! String
+        return cell
     }
 
     override func didReceiveMemoryWarning() {
