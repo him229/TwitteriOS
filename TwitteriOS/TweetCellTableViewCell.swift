@@ -17,11 +17,27 @@ class TweetCellTableViewCell: UITableViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var favCountLabel: UILabel!
     
+    var id:Int = 0
+    
     @IBOutlet weak var retweetCountLabel: UILabel!
+
+    
     @IBAction func onFavorite(sender: AnyObject) {
+        id = tweet.id
+        TwitterClient.sharedInstance.favIncrement({ (ans: Int) -> () in
+            self.favCountLabel.text = String(ans)
+            }, failure: { (error:NSError) -> () in
+                print(error)
+            }, id: id)
         
     }
     @IBAction func onRetweet(sender: AnyObject) {
+        id = tweet.id
+        TwitterClient.sharedInstance.retweetIncrement({ (ans: Int) -> () in
+            self.retweetCountLabel.text = String(ans)
+            }, failure: { (error:NSError) -> () in
+                print(error)
+            }, id: id)
     }
     
     var tweet : Tweet! {
