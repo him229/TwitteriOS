@@ -115,6 +115,14 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print(error)
         }
     }
+    
+    func composeTweet(success: ()->(), failure: (NSError) -> (), content: String){
+        POST("1.1/statuses/update.json?status=\(content)", parameters: nil, success: { (operation: NSURLSessionDataTask!, response:AnyObject?) -> Void in
+            
+            }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                print(error)
+        }
+    }
 
     func favIncrement(success: (Int)->(), failure: (NSError) -> (), id: Int){
         POST("1.1/favorites/create.json?id=\(id)", parameters: nil, success: { (operation: NSURLSessionDataTask!, response:AnyObject?) -> Void in

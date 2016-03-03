@@ -33,6 +33,14 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    @IBAction func onSubmit(sender: AnyObject) {
+        
+        TwitterClient.sharedInstance.composeTweet({ () -> () in
+            self.navigationController?.popViewControllerAnimated(true)
+            }, failure: { (error:NSError) -> () in
+                print(error.localizedDescription)
+            }, content: composeTextView.text)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

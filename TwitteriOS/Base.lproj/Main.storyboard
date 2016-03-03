@@ -47,7 +47,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="187" id="Cfv-E8-QNA" customClass="TweetCellTableViewCell" customModule="TwitteriOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="187"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="187"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cfv-E8-QNA" id="311-cZ-kTs">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="186.5"/>
@@ -173,6 +173,9 @@
                                 <rect key="frame" x="136" y="440" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="onSubmit:" destination="6ls-KI-Sjt" eventType="touchUpInside" id="i3c-el-obX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
