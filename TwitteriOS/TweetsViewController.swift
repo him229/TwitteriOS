@@ -23,8 +23,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let userDictionary = response as! [NSDictionary]
             
-            let tweets = Tweet.tweetsWithArray(userDictionary)
-            print("\(tweets[10].text)")
+            self.tweets = Tweet.tweetsWithArray(userDictionary)
+            print("\(self.tweets[10].text)")
             
             self.tableView.reloadData()
 
