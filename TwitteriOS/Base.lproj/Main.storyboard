@@ -78,15 +78,29 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5f1-t1-Hj3">
-                                                    <rect key="frame" x="109" y="148" width="55" height="30"/>
+                                                    <rect key="frame" x="93" y="148" width="55" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Favorite"/>
                                                     <connections>
                                                         <action selector="onFavorite:" destination="Cfv-E8-QNA" eventType="touchUpInside" id="Mfw-R4-eOR"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fcount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SNt-sF-vYn">
+                                                    <rect key="frame" x="153" y="152" width="45" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rcount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zUW-3c-mt1">
+                                                    <rect key="frame" x="268" y="152" width="46" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="41P-tJ-jAJ">
-                                                    <rect key="frame" x="204" y="148" width="56" height="30"/>
+                                                    <rect key="frame" x="208" y="148" width="56" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Retweet"/>
                                                     <connections>
@@ -96,7 +110,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favCountLabel" destination="SNt-sF-vYn" id="HL1-ow-RS5"/>
                                             <outlet property="name" destination="k6t-ob-kyf" id="mJX-O8-9tN"/>
+                                            <outlet property="retweetCountLabel" destination="zUW-3c-mt1" id="xp0-RA-B0M"/>
                                             <outlet property="timestamp" destination="Iuz-Tf-mF4" id="x52-4z-9vL"/>
                                             <outlet property="tweetContent" destination="9dx-wU-Hbb" id="8vd-bm-yaq"/>
                                             <outlet property="userImage" destination="VMz-SS-4Xt" id="MuR-D7-xyd"/>

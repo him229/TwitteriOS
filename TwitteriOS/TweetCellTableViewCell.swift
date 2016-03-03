@@ -15,7 +15,9 @@ class TweetCellTableViewCell: UITableViewCell {
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var favCountLabel: UILabel!
     
+    @IBOutlet weak var retweetCountLabel: UILabel!
     @IBAction func onFavorite(sender: AnyObject) {
         
     }
@@ -25,11 +27,18 @@ class TweetCellTableViewCell: UITableViewCell {
     var tweet : Tweet! {
         didSet{
             tweetContent.text = tweet.text as! String
-            let timeinterval = NSDate().timeIntervalSinceDate(tweet.timestamp!)
-            print(timeinterval)
-//            timestamp.text = tweet.timestamp as! String
+            let timeinterval = Int(NSDate().timeIntervalSinceDate(tweet.timestamp!))
+            var timeintervalString = ""
+            if (timeinterval < 3600){
+                timeintervalString = String(timeinterval/60) + "m"
+            }else{
+                timeintervalString = String(timeinterval/3600) + "h"
+            }
+            timestamp.text = (timeintervalString) as! String
             userImage.setImageWithURL(tweet.profileImgURL!)
             name.text = tweet.screenName as! String
+            favCountLabel.text = String(tweet.favoritesCount)
+            retweetCountLabel.text = String(tweet.retweetCount)
         }
     }
     override func awakeFromNib() {
