@@ -24,7 +24,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let userDictionary = response as! [NSDictionary]
             
             self.tweets = Tweet.tweetsWithArray(userDictionary)
-            print("\(self.tweets[10].text)")
+//            print("\(self.tweets[10].text)")
             
             self.tableView.reloadData()
 
@@ -54,7 +54,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCellTableViewCell
-        cell.tweetContent.text = tweets[indexPath.row].text as! String
+        
+//        cell.tweetContent.text = tweets[indexPath.row].text as! String
+        cell.tweet = tweets[indexPath.row]
         return cell
     }
 
