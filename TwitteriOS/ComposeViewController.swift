@@ -28,18 +28,20 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Placeholder"
+            textView.text = "Write here..."
             textView.textColor = UIColor.lightGrayColor()
         }
     }
     
     @IBAction func onSubmit(sender: AnyObject) {
         
-        TwitterClient.sharedInstance.composeTweet({ () -> () in
-            self.navigationController?.popViewControllerAnimated(true)
+        TwitterClient.sharedInstance.composeTweet({ (ans:Bool) -> () in
+            if(ans){
+                self.navigationController?.popViewControllerAnimated(true)
+            }
             }, failure: { (error:NSError) -> () in
                 print(error.localizedDescription)
-            }, content: composeTextView.text)
+            }, content: composeTextView.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
     }
 
     override func didReceiveMemoryWarning() {
