@@ -19,6 +19,14 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.delegate = self
         
+        
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+        
+        
+        
         TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             //print("user: \(response)")
             
@@ -35,6 +43,24 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Do any additional setup after loading the view.
     }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            //print("user: \(response)")
+            
+            self.userDictionary = response as! [NSDictionary]
+            
+            self.tweets = Tweet.tweetsWithArray(self.userDictionary)
+            //            print("\(self.tweets[10].text)")
+            
+            self.tableView.reloadData()
+            
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                print ("Error")
+        })
+        refreshControl.endRefreshing()
+    }
+    
     @IBAction func onLogoutButton(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
     }
