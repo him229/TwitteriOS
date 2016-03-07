@@ -11,6 +11,7 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]!
+    var userDictionary: [NSDictionary]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +22,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             //print("user: \(response)")
             
-            let userDictionary = response as! [NSDictionary]
+           self.userDictionary = response as! [NSDictionary]
             
-            self.tweets = Tweet.tweetsWithArray(userDictionary)
+            self.tweets = Tweet.tweetsWithArray(self.userDictionary)
 //            print("\(self.tweets[10].text)")
             
             self.tableView.reloadData()
@@ -75,6 +76,16 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if segue.identifier == "profileSegue"{
         let vc = segue.destinationViewController as! ProfileViewController
             vc.profileUser = User.currentUser}
+        
+        if segue.identifier == "cellSegue"{
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tempDict = userDictionary![indexPath!.row]
+            let newUser = User(dictionary: tempDict["user"] as! NSDictionary)
+            let vc = segue.destinationViewController as! ProfileViewController
+            vc.profileUser = newUser
+        }
+        
     }
 
 }
