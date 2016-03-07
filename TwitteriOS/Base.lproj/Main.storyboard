@@ -133,12 +133,12 @@
                         <rightBarButtonItems>
                             <barButtonItem title="+" id="gva-XN-JSc">
                                 <connections>
-                                    <segue destination="6ls-KI-Sjt" kind="push" id="N2i-PT-gvB"/>
+                                    <segue destination="6ls-KI-Sjt" kind="push" identifier="" id="N2i-PT-gvB"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Profile" id="mtn-7A-Ayi">
                                 <connections>
-                                    <segue destination="ZzN-aq-ZHd" kind="push" id="0Kg-b0-zR8"/>
+                                    <segue destination="ZzN-aq-ZHd" kind="push" identifier="profileSegue" id="0Kg-b0-zR8"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -191,22 +191,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tweets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VyC-dC-KF5">
-                                <rect key="frame" x="217" y="373" width="51" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tweets" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VyC-dC-KF5">
+                                <rect key="frame" x="249" y="373" width="51" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="followers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YNz-M4-tla">
-                                <rect key="frame" x="194" y="415" width="97" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="following" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uBO-QZ-DAj">
+                                <rect key="frame" x="197" y="464" width="103" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uBO-QZ-DAj">
-                                <rect key="frame" x="191" y="464" width="103" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="followers" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YNz-M4-tla">
+                                <rect key="frame" x="203" y="415" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -219,7 +219,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="followersLabel" destination="YNz-M4-tla" id="2GG-PS-TFF"/>
-                        <outlet property="following" destination="uBO-QZ-DAj" id="3BR-Gw-ojm"/>
+                        <outlet property="followingLabel" destination="uBO-QZ-DAj" id="QvR-cD-9k8"/>
                         <outlet property="nameLabel" destination="Op7-6Q-ZYQ" id="zcq-hh-eRa"/>
                         <outlet property="profileImageView" destination="lsg-kB-Y6z" id="Jgo-Lj-JSq"/>
                         <outlet property="tweetLabel" destination="VyC-dC-KF5" id="7RU-3L-uq5"/>

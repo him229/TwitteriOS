@@ -16,8 +16,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     
+    
+    var profileUser : User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameLabel.text = profileUser.name as! String
+        tweetLabel.text = String(profileUser.tweetCount)
+        followersLabel.text = String(profileUser.followers)
+        followingLabel.text = String(profileUser.friends)
+        profileImageView.setImageWithURL(profileUser.profileUrl!)
 
         // Do any additional setup after loading the view.
     }

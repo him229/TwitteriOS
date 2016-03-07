@@ -14,7 +14,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         composeTextView.delegate = self
-        composeTextView.text = "Placeholder"
+        composeTextView.text = "Write here..."
         composeTextView.textColor = UIColor.lightGrayColor()
         // Do any additional setup after loading the view.
     }

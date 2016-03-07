@@ -66,14 +66,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//     MARK: - Navigation
+//
+//     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+//         Get the new view controller using segue.destinationViewController.
+//         Pass the selected object to the new view controller.
+        if segue.identifier == "profileSegue"{
+        let vc = segue.destinationViewController as! ProfileViewController
+            vc.profileUser = User.currentUser}
     }
-    */
 
 }
